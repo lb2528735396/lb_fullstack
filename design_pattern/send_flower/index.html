@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //面向对象编程
+        //JS 描述一下就来对象，对象字面量
+        class Flower{
+            constructor(type,nums){
+                this.type=type  //类型
+                this.nums=nums
+            }
+        }
+        const wp={//对象
+            name:'王鹏',
+            hometown:'赣州会昌',
+            isSingle:true,
+            age:'22',
+            sendFlower(target){
+                const flower=new Flower('红玫瑰',11);
+                target.receiveFlower(flower,this);
+            }
+        }
+        const lb={
+            name:'刘斌',
+            hometown:'江西瑞金',
+            isSingle:true
+        }
+        //女主角 刘思浪
+        const lsl={
+            name:'刘思浪',
+            xq:50,//心情
+            receiveFlower(flower,sender){
+                if(this.xq<80){
+                    console.log('不约');
+                }
+                else{
+                    console.log(lsl.name+'收到了'+sender.name+'送的'+flower.nums+'朵'+flower.type);
+                    console.log('走一波');
+                }
+               
+            }
+        }
+        //王鹏的备胎
+        const dpt={
+            name:'大排头',
+            hometown:'赣州会昌',
+            //
+            receiveFlower(flower,sender){
+                if(sender.name=='王鹏'){
+                    //精准控制
+                    console.log('帮你送一下');
+                    setTimeout(()=>{
+                        lsl.xq=90;
+                        lsl.receiveFlower(flower,sender);
+                    },2000);
+                    lsl.receiveFlower(flower,sender);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
